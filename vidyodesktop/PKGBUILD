@@ -2,7 +2,7 @@
 
 pkgname=vidyodesktop
 pkgver=3.3.0.027
-pkgrel=1
+pkgrel=2
 pkgdesc="VidyoDesktop video conferencing client"
 arch=('i686' 'x86_64')
 url="http://www.vidyo.com"
@@ -11,7 +11,7 @@ install=vidyodesktop.install
 options=('emptydirs')
 conflicts=('vidyo')
 makedepends=('rpmextract')
-depends=('alsa-lib' 'libidn' 'libutil-linux' 'libxv' 'mesa-libgl' 'glu'
+depends=('alsa-lib' 'libidn' 'libutil-linux' 'libxv' 'libgl' 'glu'
          'glibc' 'libxfixes' 'libxrandr' 'libxss' 'glib2' 'libsm' 'libice'
          'libxrender' 'fontconfig' 'freetype2' 'libxext' 'libx11' 'libffi'
          'gcc-libs' 'zlib' 'libpng' 'zenity')
