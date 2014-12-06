@@ -29,6 +29,6 @@ package() {
   sed -i 's/Exec=vpn-unlimited/Exec=vpnu-arch/g' "${pkgdir}/usr/share/applications/vpn-unlimited.desktop"
 
   # Save this for conversion to a systemd unit some day
-  cp -p "${srcdir}/etc/init.d/vpn-unlimited-daemon" "${pkgdir}//usr/share/doc/vpn-unlimited/"
+  cp -p "${srcdir}/etc/init.d/vpn-unlimited-daemon" "${pkgdir}/usr/share/doc/vpn-unlimited/"
 }
 
