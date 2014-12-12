@@ -18,7 +18,7 @@ md5sums=('3435350d5c9dd57102e8b0470cd636c0'
 
 prepare() {
   cd "${srcdir}"
-  find ./${pkgbase}-${pkgver} -name setup.cfg -exec rm -f {} \;
+  find -name setup.cfg -delete
   patch -p0 < holland-1.0.10-cursor.patch
 }
 
