@@ -4,19 +4,22 @@ pkgbase=holland
 pkgname=('holland' 'holland-common' 'holland-mysqldump' 'holland-mysqllvm'
          'holland-pgdump' 'holland-xtrabackup')
 pkgver=1.0.10
-pkgrel=1
+pkgrel=2
 changelog=holland.archlog
 arch=('any')
 url="http://hollandbackup.org"
 license=('BSD' 'GPL2')
 options=('emptydirs')
 makedepends=('python2' 'python2-setuptools' 'patch')
-source=("http://hollandbackup.org/releases/stable/1.0/${pkgbase}-${pkgver}.tar.gz")
-md5sums=('3435350d5c9dd57102e8b0470cd636c0')
+source=("http://hollandbackup.org/releases/stable/1.0/${pkgbase}-${pkgver}.tar.gz"
+        "holland-1.0.10-cursor.patch")
+md5sums=('3435350d5c9dd57102e8b0470cd636c0'
+         '765146149bd193c1deb57675695d4680')
 
 prepare() {
   cd "${srcdir}"
   find ./${pkgbase}-${pkgver} -name setup.cfg -exec rm -f {} \;
+  patch -p0 < holland-1.0.10-cursor.patch
 }
 
 build() {
