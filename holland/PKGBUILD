@@ -10,7 +10,7 @@ arch=('any')
 url="http://hollandbackup.org"
 license=('BSD' 'GPL2')
 options=('emptydirs')
-makedepends=('python2' 'python2-setuptools' 'patch')
+makedepends=('python2-setuptools')
 source=("http://hollandbackup.org/releases/stable/1.0/${pkgbase}-${pkgver}.tar.gz"
         "holland-1.0.10-cursor.patch")
 md5sums=('3435350d5c9dd57102e8b0470cd636c0'
@@ -18,7 +18,7 @@ md5sums=('3435350d5c9dd57102e8b0470cd636c0'
 
 prepare() {
   cd "${srcdir}"
-  find ./${pkgbase}-${pkgver} -name setup.cfg -exec rm -f {} \;
+  find -name setup.cfg -delete
   patch -p0 < holland-1.0.10-cursor.patch
 }
 
