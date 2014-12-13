@@ -4,7 +4,7 @@ pkgbase=holland
 pkgname=('holland' 'holland-common' 'holland-mysqldump' 'holland-mysqllvm'
          'holland-pgdump' 'holland-xtrabackup')
 pkgver=1.0.10
-pkgrel=3
+pkgrel=4
 changelog=holland.archlog
 arch=('any')
 url="http://hollandbackup.org"
@@ -80,8 +80,8 @@ package_holland() {
     "${pkgdir}/usr/share/doc/holland/README.providers"
   install -Dm0644 CHANGES.txt "${pkgdir}/usr/share/doc/holland/CHANGES.txt"
   install -Dm0644 INSTALL "${pkgdir}/usr/share/doc/holland/INSTALL"
-  install -Dm0644 LICENSE "${pkgdir}/usr/share/doc/holland/LICENSE"
   install -Dm0644 README "${pkgdir}/usr/share/doc/holland/README"
+  install -Dm0644 LICENSE "${pkgdir}/usr/share/licenses/holland/LICENSE"
   cp -a config/backupsets/examples "${pkgdir}/usr/share/doc/holland/examples"
 
   install -Dm0644 "${srcdir}/holland.logrotate" "${pkgdir}/etc/logrotate.d/holland"
@@ -100,8 +100,6 @@ package_holland-common() {
   cd "${srcdir}/${pkgbase}-${pkgver}"
   install -Dm0644 plugins/holland.lib.common/README \
     "${pkgdir}/usr/share/doc/holland/README.common"
-  install -Dm0644 plugins/holland.lib.common/LICENSE \
-    "${pkgdir}/usr/share/doc/holland/LICENSE.common"
 }
 
 package_holland-mysqldump() {
@@ -118,8 +116,6 @@ package_holland-mysqldump() {
     "${pkgdir}/etc/holland/providers/mysqldump.conf"
   install -Dm0644 plugins/holland.backup.mysqldump/README \
     "${pkgdir}/usr/share/doc/holland/README.mysqldump"
-  install -Dm0644 plugins/holland.backup.mysqldump/LICENSE \
-    "${pkgdir}/usr/share/doc/holland/LICENSE.mysqldump"
 }
 
 package_holland-mysqllvm() {
@@ -141,8 +137,6 @@ package_holland-mysqllvm() {
     "${pkgdir}/etc/holland/providers/mysqldump-lvm.conf"
   install -Dm0644 plugins/holland.backup.mysql_lvm/README \
     "${pkgdir}/usr/share/doc/holland/README.mysql_lvm"
-  install -Dm0644 plugins/holland.backup.mysql_lvm/LICENSE \
-    "${pkgdir}/usr/share/doc/holland/LICENSE.mysql_lvm"
 }
 
 package_holland-pgdump() {
@@ -159,8 +153,6 @@ package_holland-pgdump() {
     "${pkgdir}/etc/holland/providers/pgdump.conf"
   install -Dm0644 plugins/holland.backup.pgdump/README \
     "${pkgdir}/usr/share/doc/holland/README.pgdump"
-  install -Dm0644 plugins/holland.backup.pgdump/LICENSE \
-    "${pkgdir}/usr/share/doc/holland/LICENSE.pgdump"
 }
 
 package_holland-xtrabackup() {
@@ -177,7 +169,5 @@ package_holland-xtrabackup() {
     "${pkgdir}/etc/holland/providers/xtrabackup.conf"
   install -Dm0644 plugins/holland.backup.xtrabackup/README \
     "${pkgdir}/usr/share/doc/holland/README.xtrabackup"
-  install -Dm0644 plugins/holland.backup.xtrabackup/LICENSE \
-    "${pkgdir}/usr/share/doc/holland/LICENSE.xtrabackup"
 }
 
