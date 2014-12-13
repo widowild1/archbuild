@@ -4,7 +4,7 @@ pkgbase=holland
 pkgname=('holland' 'holland-common' 'holland-mysqldump' 'holland-mysqllvm'
          'holland-pgdump' 'holland-xtrabackup')
 pkgver=1.0.10
-pkgrel=4
+pkgrel=5
 changelog=holland.archlog
 arch=('any')
 url="http://hollandbackup.org"
@@ -90,7 +90,7 @@ package_holland() {
 package_holland-common() {
   pkgdesc="Common library functionality for Holland Plugins"
   license=('GPL2')
-  depends=('holland' 'mysql-python')
+  depends=("holland=${pkgver}" 'mysql-python')
 
   cd "${srcdir}/${pkgbase}-${pkgver}/plugins/holland.lib.common"
   python2 setup.py install -O1 --skip-build --root "${pkgdir}"
@@ -105,7 +105,7 @@ package_holland-common() {
 package_holland-mysqldump() {
   pkgdesc="Logical mysqldump backup plugin for Holland"
   license=('GPL2')
-  depends=('holland-common' 'mariadb-clients' 'mysql-python')
+  depends=("holland-common=${pkgver}" 'mariadb-clients' 'mysql-python')
   backup=('etc/holland/providers/mysqldump.conf')
 
   cd "${srcdir}/${pkgbase}-${pkgver}/plugins/holland.backup.mysqldump"
@@ -121,7 +121,7 @@ package_holland-mysqldump() {
 package_holland-mysqllvm() {
   pkgdesc="Holland LVM snapshot backup plugin for MySQL"
   license=('GPL2')
-  depends=('holland-common' 'lvm2' 'tar' 'mysql-python')
+  depends=("holland-common=${pkgver}" 'lvm2' 'tar' 'mysql-python')
   backup=('etc/holland/providers/mysql-lvm.conf'
           'etc/holland/providers/mysqldump-lvm.conf')
 
@@ -142,7 +142,7 @@ package_holland-mysqllvm() {
 package_holland-pgdump() {
   pkgdesc="Holland Backup Provider for PostgreSQL"
   license=('GPL2')
-  depends=('holland-common' 'python2-psycopg2')
+  depends=("holland-common=${pkgver}" 'python2-psycopg2')
   backup=('etc/holland/providers/pgdump.conf')
 
   cd "${srcdir}/${pkgbase}-${pkgver}/plugins/holland.backup.pgdump"
@@ -158,7 +158,7 @@ package_holland-pgdump() {
 package_holland-xtrabackup() {
   pkgdesc="Xtrabackup plugin for Holland"
   license=('GPL2')
-  depends=('holland-common' 'xtrabackup')
+  depends=("holland-common=${pkgver}" 'xtrabackup')
   backup=('etc/holland/providers/xtrabackup.conf')
 
   cd "${srcdir}/${pkgbase}-${pkgver}/plugins/holland.backup.xtrabackup"
