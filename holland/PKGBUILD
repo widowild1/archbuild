@@ -4,7 +4,7 @@ pkgbase=holland
 pkgname=('holland' 'holland-common' 'holland-mysqldump' 'holland-mysqllvm'
          'holland-pgdump' 'holland-xtrabackup')
 pkgver=1.0.10
-pkgrel=2
+pkgrel=3
 changelog=holland.archlog
 arch=('any')
 url="http://hollandbackup.org"
@@ -12,8 +12,10 @@ license=('BSD' 'GPL2')
 options=('emptydirs')
 makedepends=('python2-setuptools')
 source=("http://hollandbackup.org/releases/stable/1.0/${pkgbase}-${pkgver}.tar.gz"
+        "holland.logrotate"
         "holland-1.0.10-cursor.patch")
 md5sums=('3435350d5c9dd57102e8b0470cd636c0'
+         '5b2d292dc7e1139fde8ab9439b0464ee'
          '765146149bd193c1deb57675695d4680')
 
 prepare() {
@@ -72,19 +74,6 @@ package_holland() {
   install -Dm0640 config/backupsets/default.conf \
     "${pkgdir}/etc/holland/backupsets/default.conf"
   install -Dm0644 docs/man/holland.1 "${pkgdir}/usr/share/man/man1/holland.1"
-
-  install -dm0755 "${pkgdir}/etc/logrotate.d"
-  cat > "${pkgdir}/etc/logrotate.d/holland" <<EOF
-/var/log/holland.log /var/log/holland/holland.log {
-    rotate 4
-    weekly
-    compress
-    missingok
-    create root adm
-}
-EOF
-
-  cd "${srcdir}/${pkgbase}-${pkgver}"
   install -Dm0644 plugins/README \
     "${pkgdir}/usr/share/doc/holland/README.plugins"
   install -Dm0644 config/providers/README \
@@ -94,6 +83,8 @@ EOF
   install -Dm0644 LICENSE "${pkgdir}/usr/share/doc/holland/LICENSE"
   install -Dm0644 README "${pkgdir}/usr/share/doc/holland/README"
   cp -a config/backupsets/examples "${pkgdir}/usr/share/doc/holland/examples"
+
+  install -Dm0644 "${srcdir}/holland.logrotate" "${pkgdir}/etc/logrotate.d/holland"
 }
 
 package_holland-common() {

@@ -1,3 +1,8 @@
+2014-12-12 Troy Engel <troyengel+arch@gmail.com>
+	* 1.0.10-3
+	Peer review changes for better PKGBUILD
+	Move logrotate to a source file
+
 2014-12-11 Troy Engel <troyengel+arch@gmail.com>
 	* 1.0.10-2
 	Create patch for MySQL cursor.execute() bug (fixed upstream)
