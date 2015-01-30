@@ -7,13 +7,13 @@
 pkgname=trace-cmd
 pkgver=2.5.1
 _commit=db0f8737d47305d2a7313a9b975d1717520e6849
-pkgrel=1
+pkgrel=2
 pkgdesc="user-space front-end command-line tool for Ftrace, inclduing the GUI interface application kernelshark as well as trace-graph and trace-view."
 arch=('i686' 'x86_64')
 url="http://git.kernel.org/?p=linux/kernel/git/rostedt/trace-cmd.git"
 license=('GPL2')
 depends=('python2' 'gtk2')
-makedepends=('git' 'pygtk' 'swig' 'docbook-xsl' 'asciidoc')
+makedepends=('pygtk' 'swig' 'docbook-xsl' 'asciidoc')
 provides=('trace-cmd')
 conflicts=('trace-cmd-git')
 source=("http://git.kernel.org/cgit/linux/kernel/git/rostedt/trace-cmd.git/snapshot/trace-cmd-${_commit}.tar.gz")
