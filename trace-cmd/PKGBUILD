@@ -1,0 +1,32 @@
+# Current Maintainer: Troy Engel <troyengel+arch@gmail.com>
+#
+# git.kernel.org cgit has an interface that allows downloading a tarball of
+# a tagged commit - browse the web interface, get the commit for a version,
+# then manually craft the URL to the download of that tag.
+
+pkgname=trace-cmd
+pkgver=2.5.1
+_commit=db0f8737d47305d2a7313a9b975d1717520e6849
+pkgrel=1
+pkgdesc="user-space front-end command-line tool for Ftrace, inclduing the GUI interface application kernelshark as well as trace-graph and trace-view."
+arch=('i686' 'x86_64')
+url="http://git.kernel.org/?p=linux/kernel/git/rostedt/trace-cmd.git"
+license=('GPL2')
+depends=('python2' 'gtk2')
+makedepends=('git' 'pygtk' 'swig' 'docbook-xsl' 'asciidoc')
+provides=('trace-cmd')
+conflicts=('trace-cmd-git')
+source=("http://git.kernel.org/cgit/linux/kernel/git/rostedt/trace-cmd.git/snapshot/trace-cmd-${_commit}.tar.gz")
+sha256sums=("30d742a009b75c09760ca07ef5df0ca985dae7f19c1d9e697d7a5d6d7196014a")
+
+build() {
+  cd "$srcdir/trace-cmd-${_commit}"
+  
+  make PYTHON_VERS=python2 all gui doc
+}
+
+package() {
+  cd "$srcdir/trace-cmd-${_commit}"
+
+  make PYTHON_VERS=python2 prefix="/usr" DESTDIR="$pkgdir" install install_gui install_doc
+}
